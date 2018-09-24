@@ -1,0 +1,18 @@
+Django==1.11.15
+django-filter==2.0.0
+djangorestframework==3.8.2
+djangorestframework-jwt==1.11.0
+selenium
+# Markdown==3.0
+psycopg2==2.7.5
+PyJWT==1.6.4
+pytz==2018.5
+redis
+celery
+pymongo
+django-cors-headers
+
+gunicorn
+
+# Djoser
+# 

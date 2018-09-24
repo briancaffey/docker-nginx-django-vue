@@ -1,0 +1,70 @@
+version: '3'
+
+services:
+
+  db:
+    image: postgres
+    networks: 
+      - nginx_network
+
+  redis:
+    image: "redis:alpine"
+    networks:
+      - nginx_network
+
+  mongo:
+    image: mongo:3
+    container_name: mongo
+    # volumes:
+    #   - .././data/mongo:/data/db
+    ports:
+      - '27017:27017'
+    networks:
+      - nginx_network
+
+  web:
+    build: .
+    command: bash -c "python3 /code/manage.py migrate --noinput && gunicorn saturday.wsgi -b 0.0.0.0:8000"
+    volumes:
+      - .:/code
+    # ports:
+    #   - "8000:8000"
+    depends_on:
+      - db
+      - redis
+      - mongo
+    networks:
+      - nginx_network
+
+  nginx:
+    image: nginx:1.13
+    build:
+      context: .
+      dockerfile: ./config/nginx/Dockerfile
+    ports:
+      - 8000:80
+    volumes:
+      - ./config/nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - web
+      - db
+      - redis
+      - mongo
+    networks:
+      - nginx_network
+
+  celery:
+    build: .
+    command: celery -A saturday worker -l info
+    volumes:
+      - .:/code
+    depends_on:
+      - db
+      - redis
+      - mongo
+    networks: 
+      - nginx_network
+
+networks:  # <-- and here
+  nginx_network:
+    driver: bridge
