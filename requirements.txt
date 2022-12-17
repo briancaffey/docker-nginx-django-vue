@@ -1,12 +1,12 @@
-Django==4.0
-django-filter==2.0.0
-djangorestframework==3.8.2
-djangorestframework-jwt==1.11.0
+Django
+django-filter
+djangorestframework
+djangorestframework-jwt
 selenium
-# Markdown==3.0
-psycopg2==2.7.5
-PyJWT==1.6.4
-pytz==2018.5
+Markdown
+psycopg2
+PyJWT
+pytz
 redis
 celery
 pymongo
