@@ -37,7 +37,7 @@ services:
       - nginx_network
 
   nginx:
-    image: nginx:1.13
+    image: nginx:stable
     build:
       context: .
       dockerfile: ./config/nginx/Dockerfile
