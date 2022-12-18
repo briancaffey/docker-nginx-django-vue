@@ -3,7 +3,7 @@
 List running containers
 
 ```
-brian@brian-ThinkPad-X1-Carbon-6th:~$ docker ps
+prompt:~$ docker ps
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                    NAMES
 a8d1b6462198        sept22_web          "python3 manage.py r…"   About an hour ago   Up About an hour    0.0.0.0:8000->8000/tcp   sept22_web_1
 50c3e3947989        postgres            "docker-entrypoint.s…"   2 hours ago         Up About an hour    5432/tcp                 sept22_db_1
